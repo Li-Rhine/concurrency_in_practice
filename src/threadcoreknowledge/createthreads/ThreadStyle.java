@@ -8,6 +8,7 @@ package threadcoreknowledge.createthreads;
 public class ThreadStyle extends Thread {
 
     @Override
+    //重写run方法
     public void run() {
         System.out.println("用Thread类实现线程");
     }
