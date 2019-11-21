@@ -61,6 +61,10 @@
 
 **启动线程的正确和错误的方式**
 start()和run()的比较
+执行run()是主线程执行
+用start()是新建的线程执行
+
+
 
 start方法的执行流程是什么？
 1. 检查线程状态，只有NEW状态下的线程才能继续，否则会抛出IllegalThreadStateException（在
