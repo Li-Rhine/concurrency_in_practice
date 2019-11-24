@@ -10,13 +10,19 @@ public class RigthWayStopThreadInProd implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (true && !Thread.currentThread().isInterrupted()) {
             System.out.println("go");
-            throwInMethod();
+            try {
+                throwInMethod();
+            } catch (InterruptedException e) {
+                //保存日志
+                System.out.println("保存日志");
+                e.printStackTrace();
+            }
         }
     }
 
-    private void throwInMethod() {
+    private void throwInMethod() throws  InterruptedException{
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
