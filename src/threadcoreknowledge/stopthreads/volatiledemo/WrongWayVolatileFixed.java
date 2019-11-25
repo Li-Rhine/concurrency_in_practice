@@ -8,9 +8,9 @@ import java.util.concurrent.BlockingQueue;
  * @Author： Rhine
  * @Date： 2019/11/25 23:06
  **/
-public class WrongWayVolatileFix {
+public class WrongWayVolatileFixed {
     public static void main(String[] args) throws InterruptedException {
-        WrongWayVolatileFix body = new WrongWayVolatileFix();
+        WrongWayVolatileFixed body = new WrongWayVolatileFixed();
 
         ArrayBlockingQueue storage = new ArrayBlockingQueue(10);
 
