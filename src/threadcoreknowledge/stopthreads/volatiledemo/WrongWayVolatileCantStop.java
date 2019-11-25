@@ -2,6 +2,7 @@ package threadcoreknowledge.stopthreads.volatiledemo;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * @Author: dahai.li
@@ -11,22 +12,23 @@ import java.util.concurrent.BlockingDeque;
  */
 public class WrongWayVolatileCantStop {
     public static void main(String[] args) throws InterruptedException {
-        ArrayBlockingQueue storeage = new ArrayBlockingQueue(10);
+        ArrayBlockingQueue storage = new ArrayBlockingQueue(10);
 
-        Producer producer = new Producer((BlockingDeque) storeage);
+        Producer producer = new Producer(storage);
         Thread producerThread = new Thread(producer);
         producerThread.start();
         Thread.sleep(1000);
 
-        Consumer consumer = new Consumer((BlockingDeque) storeage);
+        Consumer consumer = new Consumer(storage);
         while (consumer.needMoreNums()) {
-            System.out.println(consumer.storeage.take()+"被消费了");
+            System.out.println(consumer.storage.take()+"被消费了");
             Thread.sleep(100);
         }
         System.out.println("消费者不需要更多数据了");
 
         //一旦消费者不需要更多数据了，我们应该让生产者也停下来，但是实际情况
         producer.canceled = true;
+        System.out.println(producer.canceled);
     }
 }
 
@@ -35,9 +37,9 @@ class Producer implements Runnable {
     public volatile boolean canceled = false;
 
 
-    BlockingDeque storage;
+    BlockingQueue storage;
 
-    public Producer(BlockingDeque storage) {
+    public Producer(BlockingQueue storage) {
         this.storage = storage;
     }
 
@@ -48,10 +50,11 @@ class Producer implements Runnable {
         try {
             while (num <= 100000 && !canceled) {
                 if (num % 100 == 0) {
+                    //队列满了会阻塞在这一步
+                    storage.put(num);
                     System.out.println(num + "是100的倍数,被放到仓库中了");
                 }
                 num++;
-                Thread.sleep(1);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -62,10 +65,10 @@ class Producer implements Runnable {
 }
 
 class Consumer {
-    BlockingDeque storeage;
+    BlockingQueue storage;
 
-    public Consumer(BlockingDeque storeage) {
-        this.storeage = storeage;
+    public Consumer(BlockingQueue storage) {
+        this.storage = storage;
     }
 
     public boolean needMoreNums() {
