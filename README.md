@@ -144,3 +144,11 @@ InterruptedException 异常来唤醒该线程。
 
 **无法响应不可中断的阻塞
 我们可以通过中断来唤醒阻塞，但是无法响应不可中断的阻塞，没有办法**
+
+**线程的6种状态**
+New
+Runnable(可运行 待执行和执行中状态，包括没有CPU时间片的等待期间)
+Blocked(只要synchronize修饰才会进入此状态)
+Waiting(不带时间参数)
+Timed Waiting(带时间参数)
+Terminated
