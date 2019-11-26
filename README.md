@@ -152,3 +152,8 @@ Blocked(只要synchronize修饰才会进入此状态)
 Waiting(不带时间参数)
 Timed Waiting(带时间参数)
 Terminated
+
+sleep:阻塞，不会释放锁
+wait:阻塞，会释放锁
+notify:唤醒线程
+notifyAll:唤醒所有线程
