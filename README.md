@@ -157,3 +157,8 @@ sleep:阻塞，不会释放锁
 wait:阻塞，会释放锁
 notify:唤醒线程
 notifyAll:唤醒所有线程
+
+**wait、notify、notifyAll 属于Object类的，必须使用在sync()中
+
+从Object.wait()状态刚被唤醒时，通常不会立刻抢到那就会从Waiting先进入Blocked状态，抢到锁后再转换状态（官方文档）
+如果发生异常，可以直接跳到Terminated状态，不必再遵循路径，比如可以从waiting直接到Terminated **
