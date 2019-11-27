@@ -53,6 +53,8 @@ class Consumer implements Runnable {
     }
 }
 
+//这是因为synchronized是对象锁，即线程获得的锁是施加在一个实例对象上的，如果不同的线程访问的是同一对象上的不同的同步方法，那么显然不能同时进行。
+//如果是不同对象上的不同的同步方法，那么就是可以同时进行的。
 class EventStorage {
     private int maxSize;
     private LinkedList storage;
