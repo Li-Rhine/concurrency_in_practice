@@ -186,3 +186,7 @@ sleep方法可以让线程进入Waiting状态，并且不占用CPU资源，但�
 其实join源码中线程run()结束后会自动执行notifyAll()操作
 
 join()期间，新线程会让主线程处于waiting状态
+
+yield释放时间片，状态还是Runnable，不会释放锁，等待下次时间片执行
+JVM不保证执行，最好不要使用yield()
+yield()和sleep()区别：是否随时可能被再次调度

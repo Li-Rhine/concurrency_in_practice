@@ -25,6 +25,7 @@ public class JoinPrinciple {
         thread.start();
         System.out.println("开始等待子线程运行完毕");
 //        thread.join();
+        //下面的代码等同于join,哪个线程执行wait,哪个线程就会waiting
         synchronized (thread){
             thread.wait();
         }
