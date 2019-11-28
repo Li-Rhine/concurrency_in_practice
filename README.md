@@ -162,3 +162,4 @@ notifyAll:唤醒所有线程
 
 从Object.wait()状态刚被唤醒时，通常不会立刻抢到那就会从Waiting先进入Blocked状态，抢到锁后再转换状态（官方文档）
 如果发生异常，可以直接跳到Terminated状态，不必再遵循路径，比如可以从waiting直接到Terminated **
+
