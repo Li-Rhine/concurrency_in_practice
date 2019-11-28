@@ -181,3 +181,8 @@ sleep方法可以让线程进入Waiting状态，并且不占用CPU资源，但�
 2. 在同步方法里执行sleep方法时，不会释放monitor锁，但是wait方法会释放monitor锁。
 3. sleep方法短暂休眠之后会主动退出阻塞，而没有指定时间的 wait方法则需要被其他线程中断后才能退出阻塞(原因：因为wait可能没有时间参数)。
 4. wait()和notify(),notifyAll()是Object类的方法，sleep()和yield()是Thread类的方法(Java对象设计的每个类都有一把锁，对象的头中都有几位保留monitor的预留)
+
+
+其实join源码中线程run()结束后会自动执行notifyAll()操作
+
+join()期间，新线程会让主线程处于waiting状态
