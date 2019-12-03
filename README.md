@@ -190,3 +190,7 @@ join()期间，新线程会让主线程处于waiting状态
 yield释放时间片，状态还是Runnable，不会释放锁，等待下次时间片执行
 JVM不保证执行，最好不要使用yield()
 yield()和sleep()区别：是否随时可能被再次调度
+
+捕获子线程异常：
+1：不推荐，在子线程中run方法中try catch
+2: 使用自己写的UncaughtExceptionHandler
