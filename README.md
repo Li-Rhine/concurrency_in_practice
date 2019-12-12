@@ -212,3 +212,21 @@ CPU：CPU总之可能会重拍序
 内存：线程A修改线程B却看不到，引发可见性问题
 
 
+happens-before是解决可见性问题的
+happens-before：
+    1、单线程规则
+    2、锁操作(synchronized和Lock)
+    3、volatile
+    4、线程启动
+    5、join
+    6、传递性
+    7、中断
+    8、构造方法
+    9、工具类的happens-before原则：
+        1、线程安全的容器get一定能看到put等操作
+        2、countDownLatch()
+        3、Semaphore(信号量)
+        4、Future
+        5、线程池
+        6、CyclicBarrier
+
