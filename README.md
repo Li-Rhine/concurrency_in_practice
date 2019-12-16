@@ -229,4 +229,12 @@ happens-before：
         4、Future
         5、线程池
         6、CyclicBarrier
+        
+        
+volatile的作用：1、解决可见性  2、禁止重排序
+volatile不适用场景：
+    1、a++的场合
+适用场景：
+
+最好是单纯的赋值操作，不能取决于之前的状态
 

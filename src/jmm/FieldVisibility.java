@@ -10,8 +10,8 @@ public class FieldVisibility {
     volatile int b = 2;
 
     private void change() {
-        a=3;
-        b=a;
+        a = 3;
+        b = a;
     }
 
     private void print() {
