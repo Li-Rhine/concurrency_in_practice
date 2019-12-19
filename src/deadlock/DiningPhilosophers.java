@@ -54,7 +54,13 @@ public class DiningPhilosophers {
             Object leftChopstick = chopsticks[i];
             Object rightChopstick = chopsticks[(i+1) % chopsticks.length];
 
-            pilosophers[i] = new Pilosopher(leftChopstick, rightChopstick);
+            //改变获取锁的顺序，避免死锁
+            if (i == pilosophers.length - 1) {
+                pilosophers[i] = new Pilosopher(rightChopstick, leftChopstick);
+            }else {
+                pilosophers[i] = new Pilosopher(leftChopstick, rightChopstick);
+            }
+
             new Thread(pilosophers[i], "哲学家" + (i+1) + "号").start();
         }
     }
